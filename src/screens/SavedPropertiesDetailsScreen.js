@@ -6,14 +6,33 @@ import PropertyReview from '../components/PropertyReview';
 import WorkerReview from '../components/WorkerReview';
 import ItemsReview from '../components/ItemsReview';
 import { numbersWithCommas } from '../helpers/numbersWithCommas';
+import { htmlTemplate } from '../helpers/htmlTemplate';
+import { useNavigation } from '@react-navigation/native';
 
 const SavedPropertiesDetailsScreen = ({ route }) => {
+
+    const navigation = useNavigation();
 
     const { saved } = route.params;
     const { client, email, property, worker, itemsArray, total} = saved;
 
+    const body = {
+        email,
+        subject: "Presupuesto de " + client,
+        content: htmlTemplate(property.images[0], property.name, property.description, worker.image, worker.name, worker.last_name, worker.experience, worker.price, itemsArray, total)
+    }
+    
     const onPress = () => {
-        
+        fetch('http://gosling-pro.duckdns.org/api/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then(res => {
+            navigation.goBack();
+        })
+
     }
 
     return(
@@ -48,7 +67,7 @@ const SavedPropertiesDetailsScreen = ({ route }) => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 borderRadius: 25,
-                                marginTop: 20,
+                                marginVertical: 20,
                                 alignSelf: 'center'
                             }}
                             onPress={() => onPress()}

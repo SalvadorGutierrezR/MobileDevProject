@@ -4,8 +4,7 @@ import { globalStyles } from '../styles/GlobalStyles'
 import { numbersWithCommas } from '../helpers/numbersWithCommas';
 
 const ItemsReview = ({ item }) => {
-
-    const { image, name, description, price} = item;
+    const { image, name, description, price, hours} = item;
     return(
         <View 
             style={styles.card}
@@ -17,6 +16,7 @@ const ItemsReview = ({ item }) => {
             <View style={styles.textContainer}>
                 <Text style={{...globalStyles.subtitleText, textTransform: 'capitalize'}}>{ name }</Text>
                 <Text style={globalStyles.generalText}>{ description.length > 100 ? description.substring(0, 100) + '...' : description }</Text>
+                <Text style={globalStyles.generalText}>Horas para completar: { hours }</Text>
                 <Text style={globalStyles.generalText}>Precio: ${`${numbersWithCommas(price)} `}</Text>
             </View>
         </View>

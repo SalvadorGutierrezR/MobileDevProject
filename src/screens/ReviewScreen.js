@@ -9,23 +9,26 @@ import ItemsReview from '../components/ItemsReview';
 import { numbersWithCommas } from '../helpers/numbersWithCommas';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const ReviewScreen = () => {
 
     const navigation = useNavigation();
     
     const { selections, setSelections } = useContext(SelectionContext)
+    const { user } = useContext(AuthContext);
     const { property, items, worker, client, email } = selections;
     let itemsArray = [];
     let itemsTotal = 0;
-
+    let itemsHours = 0;
     
     for (let i in items) {
         itemsArray.push(items[i]);
         itemsTotal += items[i].price;
+        itemsHours += items[i].hours;
     }
 
-    const total = itemsTotal + worker.price + property.price;
+    const total = itemsTotal + ( worker.price * itemsHours ) + property.price;
 
     const onPress = () => {
         firestore()
@@ -36,10 +39,19 @@ const ReviewScreen = () => {
             worker,
             client,
             email,
-            total
+            total,
+            agent: user.uid
         })
         .then(() => {
-            navigation.navigate('SavedPropertiesScreen')
+            navigation.navigate('SavedStack')
+            setSelections({
+                property: {},
+                items: {},
+                worker: {},
+                client: '',
+                email: '',
+                total: 0,
+            })
         });
     }
 
@@ -75,7 +87,7 @@ const ReviewScreen = () => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 borderRadius: 25,
-                                marginTop: 20,
+                                marginVertical: 20,
                                 alignSelf: 'center'
                             }}
                             onPress={() => onPress()}

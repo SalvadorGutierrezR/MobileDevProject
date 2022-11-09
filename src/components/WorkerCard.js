@@ -36,7 +36,7 @@ const WorkerCard = ({ worker }) => {
                     <Text style={globalStyles.titleText}>{ last_name }</Text>
                 </View>
                 <Text style={globalStyles.subtitleText}>Experiencia: { experience } años</Text>
-                <Text style={globalStyles.generalText}>Precio: ${`${numbersWithCommas(price)} `} </Text>
+                <Text style={globalStyles.generalText}>Precio por hora: ${`${numbersWithCommas(price)} `} </Text>
             </View>
         </TouchableOpacity>
     )

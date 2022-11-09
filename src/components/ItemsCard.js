@@ -10,7 +10,7 @@ const ItemsCard = ({ item }) => {
     const { selections, setSelections } = useContext(SelectionContext);
 
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
-    const { name, description, price, image } = item;
+    const { name, description, price, image, hours } = item;
 
     const onPress = () => {
         setToggleCheckBox(!toggleCheckBox);
@@ -43,7 +43,8 @@ const ItemsCard = ({ item }) => {
             />
             <View style={styles.textContainer}>
                 <Text style={{...globalStyles.subtitleText, textTransform: 'capitalize'}}>{ name }</Text>
-                <Text style={globalStyles.generalText}>{ description.length > 100 ? description.substring(0, 100) + '...' : description }</Text>
+                <Text style={globalStyles.generalText}>{ description.length > 100 ? description.substring(0, 50) + '...' : description }</Text>
+                <Text style={globalStyles.generalText}>Horas para completar: { hours }</Text>
                 <Text style={globalStyles.generalText}>Price: ${`${numbersWithCommas(price)} `}</Text>
             </View>
         </TouchableOpacity>

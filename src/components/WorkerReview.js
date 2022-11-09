@@ -18,7 +18,7 @@ const WorkerReview = ({ worker }) => {
                     <Text style={globalStyles.titleText}>{ worker.last_name }</Text>
                 </View>
                 <Text style={globalStyles.subtitleText}>Experiencia: { worker.experience } años</Text>
-                <Text style={globalStyles.generalText}>Precio: ${`${numbersWithCommas(worker.price)} `} </Text>
+                <Text style={globalStyles.generalText}>Precio por hora: ${`${numbersWithCommas(worker.price)} `} </Text>
             </View>
         </View>
     )

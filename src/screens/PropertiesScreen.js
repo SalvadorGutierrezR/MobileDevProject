@@ -11,19 +11,7 @@ import { SelectionContext } from '../navigation/SelectionProvider';
 const PropertiesScreen = () => {
 
     const { loaders } = useContext(SelectionContext);
-
-    // const [properties, setProperties] = useState([]);
-
-    // useEffect(() => {
-    //     getProperties();
-    // }, []);
-
-    // const getProperties = async () => {
-    //     const properties = await firestore().collection('properties').get();
-    //     const documents = properties.docs.map(doc => doc.data());
-    //     setProperties(documents);
-    // }
-
+    
     return(
         <View style={globalStyles.mainContainer}>
             <Text style={globalStyles.titleText}>Selecciona una propiedad</Text>
@@ -33,9 +21,6 @@ const PropertiesScreen = () => {
                 keyExtractor={item => item.name}
                 showsVerticalScrollIndicator={false}
             />
-            {/* <FloatingButton
-                screen="ItemsScreen"
-            /> */}
         </View>
     )
 }

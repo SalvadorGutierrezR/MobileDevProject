@@ -32,7 +32,7 @@ export default SavedCard
 const styles = StyleSheet.create({
     card:{
         backgroundColor: 'white',
-        width: '100%',
+        width: '99%',
         height: 80,
         flexDirection: 'row',
         justifyContent: 'space-between',

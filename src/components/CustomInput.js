@@ -12,6 +12,9 @@ export const CustomInput = ({ label, bigger, margin=0, ...props  }) => {
       }}>
         <TextInput
           {...props}
+          style={{
+            color: 'black'
+          }}
         />
       </View>
       {/* <Text style={styles.inputError}></Text> */}

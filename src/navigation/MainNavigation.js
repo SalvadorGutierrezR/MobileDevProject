@@ -1,13 +1,12 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import PropertiesScreen from "../screens/PropertiesScreen";
-import SavedPropertiesScreen from '../screens/SavedPropertiesScreen';
 import React from "react";
 import { colors } from '../styles/GlobalStyles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SelectionStack from "./SelectionStack";
 import SavedStack from "./SavedStack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export const MainNavigation = () => {
     return(
@@ -17,6 +16,11 @@ export const MainNavigation = () => {
             inactiveColor={colors.primary}
             labeled={false}
             barStyle={{ backgroundColor: '#f5f5f5' }}
+            screenOptions={{
+                headerShown: false,
+                
+            }}
+            detachInactiveScreens={true}
         >
             <Tab.Screen 
                 name="SelectionStack" 
@@ -26,6 +30,7 @@ export const MainNavigation = () => {
                     tabBarIcon: ({ color }) => (
                         <Icon name="home" color={color} size={26} />
                     ),
+                    unmountOnBlur: true,
                 }}
             />
             <Tab.Screen 
@@ -36,6 +41,7 @@ export const MainNavigation = () => {
                     tabBarIcon: ({ color }) => (
                         <Icon name="bookmark" color={color} size={26} />
                     ),
+                    unmountOnBlur: true,
                 }}
             />
         </Tab.Navigator>
